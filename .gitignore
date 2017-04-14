@@ -1,0 +1,12 @@
+# vscode-files
+.vscode/
+
+# other IDE files
+.idea/
+
+# git-files
+.git/
+
+# python-generated files while executing
+__pycach__/
+*/__pycache/
