@@ -6,6 +6,7 @@
     @author Florian Dahlitz
 """
 import random
+import os
 
 
 def getPath(settingsFile) :
@@ -13,7 +14,7 @@ def getPath(settingsFile) :
 
         Returns the path of the file containing the vocab-pairs.
     """
-    fullPath = "C:/Users/Example/" # add full path to dir with files here
+    fullPath = os.path.dirname(os.path.realpath(__file__))
     settings = {}
     settFile = open(fullPath + settingsFile, "r")
     for line in settFile :
