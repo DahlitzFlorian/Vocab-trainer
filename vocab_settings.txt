@@ -1,2 +1,2 @@
-path latin/example.txt
-mode 2
+path english/example.txt
+mode 1

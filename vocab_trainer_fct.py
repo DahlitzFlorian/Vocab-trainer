@@ -17,16 +17,16 @@ def get_path_mode(settingsFile):
     """
     fullPath = os.path.dirname(os.path.realpath(__file__))
     settings = {}
-    with open(fullPath + settingsFile, "r") as settFile:
+    with open(fullPath + "\\" + settingsFile, "r") as settFile:
         for number, line in enumerate(settFile):
             line = line.strip()
             parts = line.split(" ")
             if number == 0:
                 settings[parts[0]] = parts[1]
             else:
-                settings[parts[0]] = parts[1]
+                settings[parts[0]] = int(parts[1])
 
-    return [fullPath + settings["path"], settings["mode"]]
+    return [fullPath + "\\vocab-files\\" + settings["path"], settings["mode"]]
 
 
 def get_vocab(filePath, mode, reverse = False):

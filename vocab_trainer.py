@@ -128,10 +128,9 @@ while vocabLeft != 0:
                             field[referencedField + 1] = currVocab
                             field[referencedField] = None
                     else:
-                        all_forms = formsTupUser
                         values = valueTupUser
                         print("-" * 50)
-                        print("{} - {} - {}".format(keys, ", ".join(all_forms), ", ".join(values)))
+                        print("{} - {}".format(keys, ", ".join(values)))
                         print("-" * 50)
                         os.system("pause")
                         vocab[vocabKey] = valueTup
@@ -186,5 +185,5 @@ while vocabLeft != 0:
         else:
             referencedField -= 1
     # closes application
-    if (userInput == "0") or (userFormsInput == "0"):
+    if userInput == "0":
         vocabLeft = 0
