@@ -8,5 +8,5 @@
 .git/
 
 # python-generated files while executing
-__pycach__/
+__pycache__/
 */__pycache/
