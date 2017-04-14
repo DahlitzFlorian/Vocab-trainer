@@ -1,1 +1,2 @@
 path latin/example.txt
+mode 2

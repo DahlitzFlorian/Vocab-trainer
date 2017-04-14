@@ -9,67 +9,65 @@ import random
 import os
 
 
-def getPath(settingsFile) :
-    """Get path
+def get_path_mode(settingsFile):
+    """Get path mode
 
-        Returns the path of the file containing the vocab-pairs.
+        Returns the path of the file containing the vocab-pairs and 
+        the mode of the run.
     """
     fullPath = os.path.dirname(os.path.realpath(__file__))
     settings = {}
-    settFile = open(fullPath + settingsFile, "r")
-    for line in settFile :
-        line = line.strip()
-        parts = line.split(" ")
-        settings[parts[0]] = parts[1]
-    settFile.close()
+    with open(fullPath + settingsFile, "r") as settFile:
+        for number, line in enumerate(settFile):
+            line = line.strip()
+            parts = line.split(" ")
+            if number == 0:
+                settings[parts[0]] = parts[1]
+            else:
+                settings[parts[0]] = parts[1]
 
-    return fullPath + settings["path"]
+    return [fullPath + settings["path"], settings["mode"]]
 
 
-def getFromFile(filePath, reverse = False) :
-    """Get from file
+def get_vocab(filePath, mode, reverse = False):
+    """Get vocab
 
-        Returns the vocab-pairs and the mode.
+        Returns the vocab-pairs.
     """
     # must be a dict including key=tuple, value=tuple
     words = {}
-    is_latin = False
 
     # reads in with forms
-    if "latin" in filePath:
-        is_latin = True
-        file = open(filePath, "r")
-        for line in file:
-            line = line.strip()
-            parts = line.split(" - ")
-            lang1 = tuple(parts[0].split(", "))
-            forms = tuple(parts[1].split(", "))
-            lang2 = tuple(parts[2].split(", "))
-            if reverse == False:
-                words[lang1] = (forms,lang2)
-            else:
-                words[lang2] = lang1
-    
-        file.close()
+    if mode == 2:
+        with open(filePath, "r") as file:
+            for line in file:
+                line = line.strip()
+                parts = line.split(" - ")
+                lang1 = tuple(parts[0].split(", "))
+                forms = tuple(parts[1].split(", "))
+                lang2 = tuple(parts[2].split(", "))
+                if reverse == False:
+                    words[lang1] = (forms,lang2)
+                else:
+                    words[lang2] = lang1
+
     # reads in without forms
     else:
-        file = open(filePath, "r")
-        for line in file:
-            line = line.strip()
-            parts = line.split(" - ")
-            lang1 = tuple(parts[0].split(", "))
-            lang2 = tuple(parts[1].split(", "))
-            if reverse == False:
-                words[lang1] = lang2
-            else:
-                words[lang2] = lang1
-
-        file.close()
+        with open(filePath, "r") as file:
+            for line in file:
+                line = line.strip()
+                parts = line.split(" - ")
+                lang1 = tuple(parts[0].split(", "))
+                lang2 = tuple(parts[1].split(", "))
+                if reverse == False:
+                    words[lang1] = lang2
+                else:
+                    words[lang2] = lang1
     
-    return (words, is_latin)
+    return words
 
 
-def getRandom(words, wordsReverse = False) :
+def get_random(words, wordsReverse = False):
     """Get random
 
         Returns a random key of the given vocab-list.

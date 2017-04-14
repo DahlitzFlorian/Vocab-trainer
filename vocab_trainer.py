@@ -11,11 +11,12 @@ import re
 
 
 # getting the path to the file storing the vocab to train on
-path = voc.getPath("vocab_settings.txt")
+path_mode = voc.get_path_mode("vocab_settings.txt")
+path = path_mode[0]
+mode = path_mode[1]
 
 # receiving mode-info and vocab-pairs
-vocab_info = voc.getFromFile(path)
-vocab = vocab_info[0]
+vocab = voc.get_vocab(path, mode)
 
 # setting up the field to play on
 userInput = None
@@ -28,7 +29,7 @@ vocabLeft = numberEntireVocab
 vocabFinished = 0
 
 # adding forms input if the mode was selected
-if vocab_info[1] == True:
+if mode == 2:
     userFormsInput = None
 
 # creats the window
@@ -55,7 +56,7 @@ while vocabLeft != 0:
                 keys = ', '.join(map(str, vocabKey))
                 print(keys)
 
-                if vocab_info[1] == True:
+                if mode == 2:
                     formsTupUser = currVocab[1][0]
                     valueTup = currVocab[1][1]
                 else:
@@ -77,7 +78,7 @@ while vocabLeft != 0:
                 #############################################
                 
                 # asks for forms input if mode was selected
-                if vocab_info[1] == True:
+                if mode == 2:
                     userFormsInput = input("Forms: ")
                     userFormsInput = userFormsInput.split(", ")
                     userFormsList = []
@@ -140,12 +141,12 @@ while vocabLeft != 0:
                 field[referencedField+1] = field[referencedField]
                 # get new pair
                 if bool(vocab) == True:
-                    randomKey = voc.getRandom(vocab)
+                    randomKey = voc.get_random(vocab)
                     for tup in vocab:
                         if randomKey in tup:
                             randomKey = tup
                     field[referencedField] = (randomKey, (vocab[randomKey]))
-                    if vocab_info[1] == True:
+                    if mode == 2:
                         forms = vocab[randomKey][0]
                         values = vocab[randomKey][1]
                         print("{} - {} - {}".format(", ".join(randomKey), ", ".join(forms), ", ".join(values)))
@@ -165,12 +166,12 @@ while vocabLeft != 0:
         elif referencedField == 1:
             # new pair
             if bool(vocab) == True:
-                randomKey = voc.getRandom(vocab)
+                randomKey = voc.get_random(vocab)
                 for tup in vocab:
                     if randomKey in tup:
                         randomKey = tup
                 field[referencedField] = (randomKey, (vocab[randomKey]))
-                if vocab_info[1] == True:
+                if mode == 2:
                     print("{} - {} - {}".format(", ".join(randomKey), ", ".join(vocab[randomKey][0]), ", ".join(vocab[randomKey][1])))
                 else:
                     print("{} - {}".format(", ".join(randomKey), ", ".join(vocab[randomKey])))
