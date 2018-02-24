@@ -33,7 +33,7 @@ if mode == 2:
     userFormsInput = None
 
 # creats the window
-os.system("cls")
+os.system("cls" if os.name == "nt" else "clear")
 print("{} finished. {} left. Entire: {}".format(vocabFinished, vocabLeft, numberEntireVocab))
 print("-"*50)
 
@@ -43,7 +43,7 @@ while vocabLeft != 0:
     while(referencedField > 0):
         # check if vocab is on the referenced field
         if field[referencedField] != None:
-            os.system("cls")
+            os.system("cls" if os.name == "nt" else "clear")
             print("{} finished. {} left. Entire: {}".format(vocabFinished, vocabLeft, numberEntireVocab))
             print("-"*50)
 
@@ -98,7 +98,7 @@ while vocabLeft != 0:
                             print("-"*50)
                             print("{} - {} - {}".format(keys, ", ".join(all_forms), ", ".join(values)))
                             print("-" * 50)
-                            os.system("pause")
+                            input("Press Enter to continue.")
 
                             field[referencedField + 1] = currVocab
                             field[referencedField] = None
@@ -108,7 +108,7 @@ while vocabLeft != 0:
                         print("-" * 50)
                         print("{} - {} - {}".format(keys, ", ".join(all_forms), ", ".join(values)))
                         print("-" * 50)
-                        os.system("pause")
+                        input("Press Enter to continue.")
                         vocab[vocabKey] = (formsTupUser, valueTup)
                         field[referencedField] = None
                 # does not asks for forms if mode was not selected
@@ -123,7 +123,7 @@ while vocabLeft != 0:
                             print("-" * 50)
                             print("{} - {}".format(keys, ", ".join(valueTupUser)))
                             print("-" * 50)
-                            os.system("pause")
+                            input("Press Enter to continue.")
 
                             field[referencedField + 1] = currVocab
                             field[referencedField] = None
@@ -132,7 +132,7 @@ while vocabLeft != 0:
                         print("-" * 50)
                         print("{} - {}".format(keys, ", ".join(values)))
                         print("-" * 50)
-                        os.system("pause")
+                        input("Press Enter to continue.")
                         vocab[vocabKey] = valueTup
                         field[referencedField] = None
             # starting point -> displays the vocab-pair
