@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/DahlitzFlorian/SortingAlgorithms.svg?branch=master)](https://travis-ci.org/DahlitzFlorian/SortingAlgorithms)
+
 ## Decription ##
 This is a small and easy to use vocabulary trainer for any language (purpose-built for latin and english) as a Console Application written in Python. The method to learn vocabulary that is represented with this application you can look up <a href="https://www.youtube.com/watch?v=VBw2m5PYIm0">here</a> (german video, thanks to the man who created that method).
 
