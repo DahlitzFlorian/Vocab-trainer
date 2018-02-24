@@ -5,18 +5,18 @@
 
     @author Florian Dahlitz
 """
-import vocab_trainer_fct as voc
+import vocab_trainer_fct as functions
 import os
 import re
 
 
 # getting the path to the file storing the vocab to train on
-path_mode = voc.get_path_mode("vocab_settings.txt")
+path_mode = functions.get_path_mode("vocab_settings.txt")
 path = path_mode[0]
 mode = path_mode[1]
 
 # receiving mode-info and vocab-pairs
-vocab = voc.get_vocab(path, mode)
+vocab = functions.get_vocab(path, mode)
 
 # setting up the field to play on
 userInput = None
@@ -50,7 +50,7 @@ while vocabLeft != 0:
             # checks if the referenced field is a controlling field
             if referencedField in controls:
                 currVocab = field[referencedField] # currVocab is tuple
-                
+
                 # takes the vocab on the referenced field
                 vocabKey = currVocab[0]
                 keys = ', '.join(map(str, vocabKey))
@@ -76,7 +76,7 @@ while vocabLeft != 0:
                 valueTupUser = tuple(valueTupUser)
                 # end of it
                 #############################################
-                
+
                 # asks for forms input if mode was selected
                 if mode == 2:
                     userFormsInput = input("Forms: ")
@@ -140,7 +140,7 @@ while vocabLeft != 0:
                 field[referencedField+1] = field[referencedField]
                 # get new pair
                 if bool(vocab) == True:
-                    randomKey = voc.get_random(vocab)
+                    randomKey = functions.get_random(vocab)
                     for tup in vocab:
                         if randomKey in tup:
                             randomKey = tup
@@ -165,7 +165,7 @@ while vocabLeft != 0:
         elif referencedField == 1:
             # new pair
             if bool(vocab) == True:
-                randomKey = voc.get_random(vocab)
+                randomKey = functions.get_random(vocab)
                 for tup in vocab:
                     if randomKey in tup:
                         randomKey = tup
