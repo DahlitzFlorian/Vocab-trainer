@@ -14,6 +14,13 @@ version: 1.2.0
     * Mode 1: file contains only the word and its translation (only translation will be tested)
     * Mode 2: files also contains from you specified forms and will be tested as well
 
+## Docker
+This application is also available through Docker Hub.
+
+```docker pull floriandahlitz/python-vocab-trainer```
+
+Make sure you run the image with the interactive-option (```-i```) otherwise it won't work.
+
 ## Screenshots
 <img src="images/img1.JPG" alt="example of a latin pair that is shown">
 
