@@ -1,23 +1,24 @@
 """Vocab-Trainer functions
 
-    This file provides functions for the vocab-trainer 
+    This file provides functions for the vocab-trainer
     application.
 
     @author Florian Dahlitz
 """
 import random
-import os
+from pathlib import Path
 
 
 def get_path_mode(settingsFile):
     """Get path mode
 
-        Returns the path of the file containing the vocab-pairs and 
+        Returns the path of the file containing the vocab-pairs and
         the mode of the run.
     """
-    fullPath = os.path.dirname(os.path.realpath(__file__))
+    fullPath = Path.cwd()
+
     settings = {}
-    with open(fullPath + "\\" + settingsFile, "r") as settFile:
+    with open(fullPath / settingsFile, "r") as settFile:
         for number, line in enumerate(settFile):
             line = line.strip()
             parts = line.split(" ")
@@ -26,7 +27,7 @@ def get_path_mode(settingsFile):
             else:
                 settings[parts[0]] = int(parts[1])
 
-    return [fullPath + "\\vocab-files\\" + settings["path"], settings["mode"]]
+    return [fullPath / "vocab-files" / settings["path"], settings["mode"]]
 
 
 def get_vocab(filePath, mode, reverse = False):
@@ -53,7 +54,7 @@ def get_vocab(filePath, mode, reverse = False):
 
     # reads in without forms
     else:
-        with open(filePath, "r") as file:
+        with open(filePath, "r", encoding="ISO-8859-1") as file:
             for line in file:
                 line = line.strip()
                 parts = line.split(" - ")
@@ -63,7 +64,7 @@ def get_vocab(filePath, mode, reverse = False):
                     words[lang1] = lang2
                 else:
                     words[lang2] = lang1
-    
+
     return words
 
 
@@ -82,4 +83,3 @@ def get_random(words, wordsReverse = False):
             return random.choice(list(random.choice(list(words.keys()))))
         else:
             return random.choice(list(random.choice(list(wordsReverse.keys()))))
-
