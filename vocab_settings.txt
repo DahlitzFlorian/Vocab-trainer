@@ -1,2 +1,0 @@
-path english/example.txt
-mode 1

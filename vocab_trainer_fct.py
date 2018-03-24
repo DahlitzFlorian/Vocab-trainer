@@ -7,6 +7,7 @@
 """
 import random
 from pathlib import Path
+import configparser
 
 
 def get_path_mode(settingsFile):
@@ -17,17 +18,12 @@ def get_path_mode(settingsFile):
     """
     fullPath = Path.cwd()
 
-    settings = {}
-    with open(fullPath / settingsFile, "r") as settFile:
-        for number, line in enumerate(settFile):
-            line = line.strip()
-            parts = line.split(" ")
-            if number == 0:
-                settings[parts[0]] = parts[1]
-            else:
-                settings[parts[0]] = int(parts[1])
+    conf = configparser.ConfigParser()
+    conf.read_file(open(fullPath / settingsFile))
+    relPath = conf.get("General", "path")
+    mode = conf.get("General", "mode")
 
-    return [fullPath / "vocab-files" / settings["path"], settings["mode"]]
+    return [fullPath / "vocab-files" / relPath, mode]
 
 
 def get_vocab(filePath, mode, reverse=False):

@@ -11,7 +11,7 @@ import re
 
 
 # getting the path to the file storing the vocab to train on
-path_mode = functions.get_path_mode("vocab_settings.txt")
+path_mode = functions.get_path_mode("settings.conf")
 path = path_mode[0]
 mode = path_mode[1]
 
