@@ -20,7 +20,7 @@ vocab = functions.get_vocab(path, mode)
 
 # setting up the field to play on
 userInput = None
-field = {i : None for i in range(1, 26)}
+field = {i: None for i in range(1, 26)}
 controls = (3, 8, 13, 18, 25)
 
 # creating vocab-lists
@@ -34,7 +34,8 @@ if mode == 2:
 
 # creats the window
 os.system("cls" if os.name == "nt" else "clear")
-print("{} finished. {} left. Entire: {}".format(vocabFinished, vocabLeft, numberEntireVocab))
+print("{} finished. {} left. Entire: {}".format(vocabFinished, vocabLeft,
+                                                numberEntireVocab))
 print("-"*50)
 
 # training on vocab
@@ -42,14 +43,16 @@ while vocabLeft != 0:
     referencedField = 25
     while(referencedField > 0):
         # check if vocab is on the referenced field
-        if field[referencedField] != None:
+        if field[referencedField] is not None:
             os.system("cls" if os.name == "nt" else "clear")
-            print("{} finished. {} left. Entire: {}".format(vocabFinished, vocabLeft, numberEntireVocab))
+            print("{} finished. {} left. Entire: {}".format(vocabFinished,
+                                                            vocabLeft,
+                                                            numberEntireVocab))
             print("-"*50)
 
             # checks if the referenced field is a controlling field
             if referencedField in controls:
-                currVocab = field[referencedField] # currVocab is tuple
+                currVocab = field[referencedField]  # currVocab is tuple
 
                 # takes the vocab on the referenced field
                 vocabKey = currVocab[0]
@@ -96,7 +99,9 @@ while vocabLeft != 0:
                             all_forms = formsTupUser
                             values = valueTupUser
                             print("-"*50)
-                            print("{} - {} - {}".format(keys, ", ".join(all_forms), ", ".join(values)))
+                            print("{} - {} - {}".format(keys,
+                                                        ", ".join(all_forms),
+                                                        ", ".join(values)))
                             print("-" * 50)
                             input("Press Enter to continue.")
 
@@ -139,7 +144,7 @@ while vocabLeft != 0:
             elif referencedField == 1:
                 field[referencedField+1] = field[referencedField]
                 # get new pair
-                if bool(vocab) == True:
+                if bool(vocab) is True:
                     randomKey = functions.get_random(vocab)
                     for tup in vocab:
                         if randomKey in tup:
@@ -164,7 +169,7 @@ while vocabLeft != 0:
         # get new vocab pair
         elif referencedField == 1:
             # new pair
-            if bool(vocab) == True:
+            if bool(vocab) is True:
                 randomKey = functions.get_random(vocab)
                 for tup in vocab:
                     if randomKey in tup:
